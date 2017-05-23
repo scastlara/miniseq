@@ -55,7 +55,8 @@ Inherits from Sequence.
 
 #### Methods
 
-* **translate:** Returns the Protein (from first start codon to stop).
+* **translate:**
+>Returns the Protein (from first start codon to stop).
 
 ----
 ### RNASequence
