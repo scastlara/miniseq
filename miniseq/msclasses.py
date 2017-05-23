@@ -1,11 +1,16 @@
-from miniseq.seqdata import *
-import sys
+"""
+Module to handle sequences
+"""
+import miniseq.seqdata as seqdata
 import re
 
 # ----------------------------------------------------
 # CLASSES
 # ----------------------------------------------------
 class Sequence(object):
+    """
+    Sequence base class
+    """
     alphabet = set()
     def __init__(self, identifier, sequence):
         self.__identifier = identifier
@@ -44,29 +49,47 @@ class Sequence(object):
         return(self.__sequence[key])
 
     def get_identifier(self):
+        """
+        Getter of identifier
+        """
         return self.__identifier
 
     def get_sequence(self):
+        """
+        Getter of sequence
+        """
         return self.__sequence
 
     def has_subsequence(self, subsequence):
+        """
+        Checks if a string is found inside the sequence
+        """
         if subsequence.get_sequence() in self.__sequence:
             return True
         else:
             return False
 
     def check_alphabet(self):
+        """
+        Checks if the alphabet is correct for the sequence type
+        """
         for char in self.__sequence:
             if char not in self.alphabet:
                 raise IncorrectSequenceLetter(char, self.__class__.__name__ )
 
     def has_pattern(self, pattern):
+        """
+        Checks if regex pattern is found in sequence
+        """
         if re.search(pattern, self.__sequence):
             return True
         else:
             return False
 
     def get_type(self):
+        """
+        Returns sequence type
+        """
         return "Sequence"
 
     def __str__(self):
@@ -78,7 +101,10 @@ class Sequence(object):
         return ">%s\n%s" % (self.__identifier, "\n".join(seq_split))
 
 class Protein(Sequence):
-    alphabet  = set(protein_letters)
+    """
+    Protein class
+    """
+    alphabet  = set(seqdata.protein_letters)
 
     def __init__(self, identifier, sequence):
         super(Protein, self).__init__(identifier, sequence)
@@ -89,7 +115,13 @@ class Protein(Sequence):
 
 
 class NucleotideSequence(Sequence):
+    """
+    Nucleotide sequence class
+    """
     def translate(self):
+        """
+        Returns Protein object (from first start codon to first stop after start)
+        """
         # Find first start codon index
         start_index   = int()
         prot_sequence = str()
@@ -124,10 +156,10 @@ class RNASequence(NucleotideSequence):
     Class for RNASequence objects.
     It's a NucleotideSequence with a reverse_transcribe method.
     """
-    alphabet     = set(rna_letters)
-    stop_codons  = rna_stop_codons
-    start_codons = rna_start_codons
-    codon_table  = rna_table
+    alphabet     = set(seqdata.rna_letters)
+    stop_codons  = seqdata.rna_stop_codons
+    start_codons = seqdata.rna_start_codons
+    codon_table  = seqdata.rna_table
 
     def __init__(self, identifier, sequence):
         super(RNASequence, self).__init__(identifier, sequence)
@@ -146,11 +178,11 @@ class DNASequence(NucleotideSequence):
     Class for DNASequence objects.
     It's a NucleotideSequence with a transcribe method.
     """
-    dna_complement = dna_complement
-    codon_table    = dna_table
-    alphabet       = set(dna_letters)
-    stop_codons    = dna_stop_codons
-    start_codons   = dna_start_codons
+    dna_complement = seqdata.dna_complement
+    codon_table    = seqdata.dna_table
+    alphabet       = set(seqdata.dna_letters)
+    stop_codons    = seqdata.dna_stop_codons
+    start_codons   = seqdata.dna_start_codons
 
     def __init__(self, identifier, sequence):
         super(DNASequence, self).__init__(identifier, sequence)

@@ -1,5 +1,8 @@
-from miniseq.msclasses   import *
-from miniseq.msfunctions import *
+"""
+Module to handle FASTA files
+"""
+import miniseq.msfunctions as msfunctions
+import sys
 
 class FASTA(object):
     """
@@ -13,7 +16,7 @@ class FASTA(object):
             raise MultipleFASTASources
 
         if filename is not None:
-            self.sequences = [ seq for seq in FASTA_iterator(filename) ]
+            self.sequences = [ seq for seq in msfunctions.FASTA_iterator(filename) ]
         if sequences is not None:
             self.filename  = "Unnamed FASTA"
             self.sequences = sequences
@@ -60,12 +63,12 @@ class FASTA(object):
         """
         Writes the FASTA to a file
         """
-        fh = open(filename, "w")
+        filehandle = open(filename, "w")
         for seq in self.sequences:
             seq_split = list()
             for i in range(0, len(seq.get_sequence()), max_linesize):
                 seq_split.append(seq.get_sequence()[i:max_linesize + i])
-            fh.write(">%s\n%s\n" % (seq.get_identifier(), "\n".join(seq_split)))
+            filehandle.write(">%s\n%s\n" % (seq.get_identifier(), "\n".join(seq_split)))
         sys.stderr.write("FASTA saved at %s\n" % filename)
 
     def filter_by_length(self, length, mode="above"):
