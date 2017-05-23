@@ -69,5 +69,5 @@ Inherits from Sequence.
     write(filename, max_linesize=100): Writes FASTA to filename. Each line will be of length max_linesize.
 
     filter_by_length(length, mode="above"): Returns FASTA with sequences with length >= or <= 'length'.
-                                                  Set ab=True to '>=' or bel=True to '<='.
+                                                  Set mode to 'above' or 'below'.
 ```
