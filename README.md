@@ -17,7 +17,7 @@ for seq in fasta.sequences:
     print( "id:%s length:%s\n" % ( seq.get_identifier(), seq.get_sequence() ) )
 
 # Write new FASTA with filtered sequences
-filter_by_id.write("myfilteredfasta.fa")
+filtered_by_id.write("myfilteredfasta.fa")
 ```
 
 ## Classes
