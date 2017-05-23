@@ -24,7 +24,7 @@ filter_by_id.write("myfilteredfasta.fa")
 ---
 ### Sequence
 
-##### Attributes
+#### Attributes
 
 * **identifier:**
 > Sequence identifier
@@ -33,7 +33,7 @@ filter_by_id.write("myfilteredfasta.fa")
 > Sequence letters
 
 
-##### Methods
+#### Methods
 
 * **get_identifier:**
 > Getter of identifier
@@ -53,7 +53,7 @@ filter_by_id.write("myfilteredfasta.fa")
 ### DNASequence
 Inherits from Sequence.
 
-##### Methods
+#### Methods
 
 * **translate:** Returns the Protein (from first start codon to stop).
 
@@ -61,7 +61,7 @@ Inherits from Sequence.
 ### RNASequence
 Inherits from Sequence.
 
-##### Methods
+#### Methods
 
 * **reverse_transcribe:**
 > Returns the DNASequence.
@@ -73,7 +73,7 @@ Inherits from Sequence.
 -----
 ### FASTA
 
-##### Attributes
+#### Attributes
 >  One or the other! By default, first argument is 'filename'.
 
 * **filename:**
@@ -83,7 +83,7 @@ Inherits from Sequence.
 > List of Sequence objects.
 
 
-##### Methods
+#### Methods
 
 * **get_number**      
 > Get number of sequences.
