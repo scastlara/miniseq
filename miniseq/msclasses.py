@@ -66,6 +66,9 @@ class Sequence(object):
         else:
             return False
 
+    def get_type(self):
+        return "Sequence"
+
     def __str__(self):
         max_linesize = 40
         seq_split    = list()

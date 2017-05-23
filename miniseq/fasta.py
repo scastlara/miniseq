@@ -36,7 +36,7 @@ class FASTA(object):
                 self.types[seq.get_type()] += 1
         return self.types
 
-    def get_sequences(self, identifiers):
+    def filter_by_id(self, identifiers):
         """
         Gets only the specified identifiers. Returns a FASTA object.
         """
@@ -45,6 +45,16 @@ class FASTA(object):
             if seq.get_identifier() in identifiers:
                 newsequences.append(seq)
         return FASTA(sequences=newsequences)
+
+    def get_sequence(self, identifier):
+        """
+        Returns a sequence object with the specified identifier
+        """
+        seq_to_return = [ seq for seq in self.sequences if seq.get_identifier() == identifier ]
+        if seq_to_return:
+            return seq_to_return[0]
+        else:
+            return None
 
     def write(self, filename, max_linesize=100):
         """
@@ -58,20 +68,21 @@ class FASTA(object):
             fh.write(">%s\n%s\n" % (seq.get_identifier(), "\n".join(seq_split)))
         sys.stderr.write("FASTA saved at %s\n" % filename)
 
-    def filter_by_length(self, length, ab=True, bel=False):
+    def filter_by_length(self, length, mode="above"):
         """
         Gets only sequences above or below length threshold
         """
-        if bel is True:
-            ab=False
         newsequences = list()
         for seq in self.sequences:
-            if ab:
+            if mode == "above":
                 if len(seq.get_sequence()) >= length:
                     newsequences.append(seq)
-            else:
+            elif mode == "below":
                 if len(seq.get_sequence()) <= length:
                     newsequences.append(seq)
+            else:
+                raise FilterModeNotAllowed
+
         return FASTA(sequences=newsequences)
 
     def add_sequence(self, seq):
@@ -100,3 +111,11 @@ class MultipleFASTASources(Exception):
     '''
     def __str__(self):
         return("ERROR: FASTA class takes only one argument, either filename or sequences")
+
+
+class FilterModeNotAllowed(Exception):
+    '''
+    Exception to handle non-existing mode in filter_by_length
+    '''
+    def __str__(self):
+        return("ERROR: filter_by_length only has two modes: 'above' and 'below'")

@@ -59,13 +59,15 @@ Inherits from Sequence.
 ```
     get_number:      Get number of sequences.
     get_types:       Gets types of sequences as a dictionary.
-    get_sequences(identifiers): Filters by the sequences with the identifiers in the 'identifiers' list.
+    filter_by_id(identifiers): Filters by the sequences with the identifiers in the 'identifiers' list.
                                 Returns FASTA object.
 
     add_sequence:    Adds sequence object to FASTA.
 
+    get_sequence(identifier): Returns seq object (or None) with matching identifier (only one seq!)
+
     write(filename, max_linesize=100): Writes FASTA to filename. Each line will be of length max_linesize.
 
-    filter_by_length(length, ab=True, bel=False): Returns FASTA with sequences with length >= or <= 'length'.
+    filter_by_length(length, mode="above"): Returns FASTA with sequences with length >= or <= 'length'.
                                                   Set ab=True to '>=' or bel=True to '<='.
 ```
