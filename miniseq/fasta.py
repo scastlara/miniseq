@@ -59,6 +59,22 @@ class FASTA(object):
         else:
             return None
 
+    def write_lengths(self, filename=None):
+        """
+        Gets some stats about the FASTA sequences
+        """
+        if filename is not None:
+            outfile = open(filename, "w")
+        avg_len = 0
+        for seq in self.sequences:
+            if filename is not None:
+                outfile.write("%s\t%s\n" % (seq.get_identifier(), len(seq)))
+            avg_len += len(seq)
+        avg_len = (avg_len / len(self.sequences))
+        sys.stderr.write("Average Length = %s\n" % round(avg_len, 2))
+        if filename is not None:
+            sys.stderr.write("Lengths written to %s.\n" % filename )
+
     def write(self, filename, max_linesize=100):
         """
         Writes the FASTA to a file
