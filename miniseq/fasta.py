@@ -17,23 +17,29 @@ class FASTA(object):
             raise MultipleFASTASources
 
         if filename is not None:
-            self.sequences = [ seq for seq in msfunctions.FASTA_iterator(filename) ]
+            self.__sequences = [ seq for seq in msfunctions.FASTA_iterator(filename) ]
         if sequences is not None:
             self.filename  = "Unnamed FASTA"
-            self.sequences = sequences
+            self.__sequences = sequences
         self.types     = dict()
 
     def get_number(self):
         """
         Gets total number of sequences
         """
-        return len(self.sequences)
+        return len(self.__sequences)
 
+    def get_sequences(self):
+        """
+        Gets list of sequence objects
+        """
+        return self.__sequences
+        
     def get_types(self):
         """
         Gets proportion of types of sequences (Protein, DNA, RNA)
         """
-        for seq in self.sequences:
+        for seq in self.__sequences:
             if seq.get_type() not in self.types:
                 self.types[seq.get_type()] = 1
             else:
@@ -45,7 +51,7 @@ class FASTA(object):
         Gets only the specified identifiers. Returns a FASTA object.
         """
         newsequences = list()
-        for seq in self.sequences:
+        for seq in self.__sequences:
             if seq.get_identifier() in identifiers:
                 newsequences.append(seq)
         return FASTA(sequences=newsequences)
@@ -54,7 +60,7 @@ class FASTA(object):
         """
         Returns a sequence object with the specified identifier
         """
-        seq_to_return = [ seq for seq in self.sequences if seq.get_identifier() == identifier ]
+        seq_to_return = [ seq for seq in self.__sequences if seq.get_identifier() == identifier ]
         if seq_to_return:
             return seq_to_return[0]
         else:
@@ -64,13 +70,12 @@ class FASTA(object):
         """
         Plot lengths
         """
-
         avg_len = 0
         lengths = list()
-        for seq in self.sequences:
+        for seq in self.__sequences:
             avg_len += len(seq)
             lengths.append(len(seq))
-        avg_len = (avg_len / len(self.sequences))
+        avg_len = (avg_len / len(self.__sequences))
         sys.stderr.write("Average Length = %s\n" % round(avg_len, 2))
         plt.boxplot(lengths)
         plt.savefig(filename)
@@ -80,7 +85,7 @@ class FASTA(object):
         Writes the FASTA to a file
         """
         filehandle = open(filename, "w")
-        for seq in self.sequences:
+        for seq in self.__sequences:
             seq_split = list()
             for i in range(0, len(seq.get_sequence()), max_linesize):
                 seq_split.append(seq.get_sequence()[i:max_linesize + i])
@@ -92,7 +97,7 @@ class FASTA(object):
         Gets only sequences above or below length threshold
         """
         newsequences = list()
-        for seq in self.sequences:
+        for seq in self.__sequences:
             if mode == "above":
                 if len(seq.get_sequence()) >= length:
                     newsequences.append(seq)
@@ -109,7 +114,7 @@ class FASTA(object):
         Adds sequence to FASTA object
         """
         if hasattr(seq, 'identifier') and hasattr(seq, 'sequence'):
-            self.sequences.append(seq)
+            self.__sequences.append(seq)
 
     def __str__(self):
         """
