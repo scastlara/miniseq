@@ -1,4 +1,5 @@
 # miniseq
+<img src="https://github.com/scastlara/miniseq/tree/master/miniseq/logo.png"/>
 Tiny package to handle sequences and FASTA.
 
 ## Usage
