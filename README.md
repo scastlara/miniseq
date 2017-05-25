@@ -20,6 +20,12 @@ for seq in fasta.sequences:
 filtered_by_id.write("myfilteredfasta.fa")
 ```
 
+## Install
+```bash
+git clone https://github.com/scastlara/miniseq.git
+sudo python3 setup.py install
+```
+
 ## Classes
 ---
 ### Sequence
