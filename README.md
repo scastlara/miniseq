@@ -115,6 +115,5 @@ Inherits from Sequence.
 > Returns FASTA with sequences with length >= or <= 'length'.
 > Set mode to 'above' or 'below'.
 
-* **write_lengths(filename=None):**
-> Writes to stderr the avg length of the sequences and to filename the table
-> with each identifier and its length (if filename is specified)
+* **plot_lengths(filename):**
+> Creates plot with length distribution to filename
