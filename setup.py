@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='miniseq',
-      version='0.2',
+      version='0.3',
       description='Minimal sequence classes',
       url='http://github.com/scastlara/miniseq',
       author='S. Castillo-Lara',
