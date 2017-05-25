@@ -114,3 +114,7 @@ Inherits from Sequence.
 * **filter_by_length(length, mode="above"):**
 > Returns FASTA with sequences with length >= or <= 'length'.
 > Set mode to 'above' or 'below'.
+
+* **write_lengths(filename=None):**
+> Writes to stderr the avg length of the sequences and to filename the table
+> with each identifier and its length (if filename is specified)
