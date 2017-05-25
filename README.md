@@ -1,4 +1,3 @@
-# miniseq
 <img width="250px" src="https://github.com/scastlara/miniseq/blob/master/miniseq/logo.png"/>
 Tiny package to handle sequences and FASTA.
 
