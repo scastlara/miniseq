@@ -23,18 +23,18 @@ class FASTA(object):
             self.__sequences = sequences
         self.types     = dict()
 
+    def __iter__(self):
+        return iter(self.__sequences)
+
+    def __getitem__(self, key):
+        return self.__sequences[key]
+
     def get_number(self):
         """
         Gets total number of sequences
         """
         return len(self.__sequences)
 
-    def get_sequences(self):
-        """
-        Gets list of sequence objects
-        """
-        return self.__sequences
-        
     def get_types(self):
         """
         Gets proportion of types of sequences (Protein, DNA, RNA)

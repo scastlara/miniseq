@@ -13,7 +13,7 @@ filtered_by_length  = fasta.filter_by_length(length=125, mode="above")
 filtered_by_id      = fasta.filter_by_id(identifiers=["seq1", "seq2", "seq56"])
 
 # Get sequences and print identifier and sequence length
-for seq in fasta.get_sequences():
+for seq in fasta:
     print( "id:%s length:%s\n" % ( seq.get_identifier(), seq.get_sequence() ) )
 
 # Write new FASTA with filtered sequences
