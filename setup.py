@@ -6,6 +6,6 @@ setup(name='miniseq',
       url='http://github.com/scastlara/miniseq',
       author='S. Castillo-Lara',
       author_email='sergiocastillo@ub.edu',
-      license='MIT',
+      license='GPL-3.0',
       packages=['miniseq'],
       zip_safe=False)
