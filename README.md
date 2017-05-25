@@ -4,7 +4,7 @@ Tiny package to handle sequences and FASTA.
 ## Usage
 ```python
 import miniseq as ms
-fasta          = ms.FASTA(filename="myfasta.fa")
+fasta = ms.FASTA(filename="myfasta.fa")
 
 # Filter sequences longer than 125
 filtered_by_length  = fasta.filter_by_length(length=125, mode="above")
