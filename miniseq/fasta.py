@@ -65,7 +65,7 @@ class FASTA(object):
         else:
             return None
 
-    def get_lengths(self, filename):
+    def get_lengths(self):
         """
         Get array of lengths
         """
