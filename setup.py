@@ -7,8 +7,5 @@ setup(name='miniseq',
       author='S. Castillo-Lara',
       author_email='sergiocastillo@ub.edu',
       license='GPL-3.0',
-      install_requires=[
-          'matplotlib',
-      ],
       packages=['miniseq'],
       zip_safe=False)

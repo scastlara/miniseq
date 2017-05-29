@@ -3,7 +3,6 @@ Module to handle FASTA files
 """
 import miniseq.msfunctions as msfunctions
 import sys
-import matplotlib.pyplot as plt
 
 class FASTA(object):
     """
@@ -66,9 +65,9 @@ class FASTA(object):
         else:
             return None
 
-    def plot_lengths(self, filename):
+    def get_lengths(self, filename):
         """
-        Plot lengths
+        Get array of lengths
         """
         avg_len = 0
         lengths = list()
@@ -77,8 +76,7 @@ class FASTA(object):
             lengths.append(len(seq))
         avg_len = (avg_len / len(self.__sequences))
         sys.stderr.write("Average Length = %s\n" % round(avg_len, 2))
-        plt.boxplot(lengths)
-        plt.savefig(filename)
+        return lengths
 
     def write(self, filename, max_linesize=100):
         """

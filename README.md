@@ -18,6 +18,11 @@ for seq in fasta:
 
 # Write new FASTA with filtered sequences
 filtered_by_id.write("myfilteredfasta.fa")
+
+# Plot length distribution of sequences in fasta
+import matplotlib.pyplot as plt
+plt.boxplot(fasta.get_lengths())
+
 ```
 
 ## Install
@@ -118,5 +123,5 @@ Inherits from Sequence.
 > Returns FASTA with sequences with length >= or <= 'length'.
 > Set mode to 'above' or 'below'.
 
-* **plot_lengths(filename):**
-> Creates plot with length distribution to filename
+* **get_lengths(filename):**
+> Gets list of lengths
