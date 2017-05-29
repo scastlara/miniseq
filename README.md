@@ -22,7 +22,7 @@ filtered_by_id.write("myfilteredfasta.fa")
 # Plot length distribution of sequences in fasta
 import matplotlib.pyplot as plt
 plt.boxplot(fasta.get_lengths())
-
+plt.show()
 ```
 
 ## Install
