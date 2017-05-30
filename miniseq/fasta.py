@@ -71,14 +71,6 @@ class FASTA(object):
         else:
             return None
 
-    def get_longest(self):
-        """
-        Returns Sequence object of the longest sequence
-        """
-        biggest_len = list()
-        biggest_len = [seq for seq in self if len(seq)>= len(biggest_len[0])]
-        return biggest_len[-1]
-
 
     def get_lengths(self):
         """
