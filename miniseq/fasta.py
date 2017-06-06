@@ -8,15 +8,18 @@ class FASTA(object):
     """
     Class for FASTA object. Contains multiple sequences of any type.
     """
-    def __init__(self, filename=None, sequences=None):
+    def __init__(self, filename=None, sequences=None, force=None):
         self.filename  = filename
         if filename is None and sequences is None:
             raise MultipleFASTASources
         if filename is not None and sequences is not None:
             raise MultipleFASTASources
 
+        if force is not None:
+            if force != "protein" and force != "dna" and force != "rna" and force != "sequence":
+                raise ForceFASTANotAllowed
         if filename is not None:
-            self.__sequences = [ seq for seq in msfunctions.FASTA_iterator(filename) ]
+            self.__sequences = [ seq for seq in msfunctions.FASTA_iterator(filename, force) ]
         if sequences is not None:
             self.filename  = "Unnamed FASTA"
             self.__sequences = sequences
@@ -147,3 +150,11 @@ class FilterModeNotAllowed(Exception):
     '''
     def __str__(self):
         return("ERROR: filter_by_length only has two modes: 'above' and 'below'")
+
+
+class ForceFASTANotAllowed(Exception):
+    '''
+    Exception to handle incorrect force argument
+    '''
+    def __str__(self):
+        return("ERROR: Can only force 'protein', 'dna', 'rna' or 'sequence' to FASTA object.")

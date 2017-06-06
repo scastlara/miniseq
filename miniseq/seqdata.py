@@ -1,6 +1,6 @@
-protein_letters = 'ACDEFGHIKLMNPQRSTVNWY'
-rna_letters = 'GAUCN'
-dna_letters = 'GATCN'
+protein_letters = 'ACDEFGHIKLMNPQRSTVNWY-X'
+rna_letters = 'GAUCN-'
+dna_letters = 'GATCN-'
 
 #COMPLEMENT
 
