@@ -120,10 +120,7 @@ class FASTA(object):
         """
         Splits FASTA into multiple FASTA objects
         """
-        falist = list()
-        for seq in self:
-            falist.append(FASTA(sequences=[seq]))
-        return falist
+        return [FASTA(sequences=[seq]) for seq in self]
 
     def add_sequence(self, seq):
         """
