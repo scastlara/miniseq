@@ -116,6 +116,15 @@ class FASTA(object):
 
         return FASTA(sequences=newsequences)
 
+    def split(self):
+        """
+        Splits FASTA into multiple FASTA objects
+        """
+        falist = list()
+        for seq in self:
+            falist.append(FASTA(sequences=[seq]))
+        return falist
+
     def add_sequence(self, seq):
         """
         Adds sequence to FASTA object
